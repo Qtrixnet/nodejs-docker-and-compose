@@ -1,7 +1,7 @@
 services:
   backend:
     container_name: backend
-    image: qtrixnet/backend-docker-and-compose-v2
+    image: qtrixnet/backend-docker-and-compose-v4
     ports:
       - '4000:3000'
     env_file:
@@ -14,7 +14,7 @@ services:
 
   frontend:
     container_name: frontend
-    image: qtrixnet/frontend-docker-and-compose-v2
+    image: qtrixnet/frontend-docker-and-compose-v4
     ports:
       - '8081:80'
     restart: always
