@@ -1,0 +1,48 @@
+services:
+  backend:
+    container_name: backend
+    image: qtrixnet/backend-docker-and-compose-v2
+    ports:
+      - '4000:3000'
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - db
+    restart: always
+    networks:
+      - internal
+
+  frontend:
+    container_name: frontend
+    image: qtrixnet/frontend-docker-and-compose-v2
+    ports:
+      - '8081:80'
+    restart: always
+    networks:
+      - external
+
+  db:
+    image: postgres:alpine
+    env_file:
+      - ./backend/.env
+    restart: always
+    volumes:
+      - ./pg-data:/var/lib/postgresql/data/pgdata
+    networks:
+      - internal
+
+  adminer:
+    image: adminer
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+    networks:
+      - internal
+
+volumes:
+  postgres_data:
+
+networks:
+  internal:
+  external:

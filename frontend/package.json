@@ -13,10 +13,11 @@
     "web-vitals": "^2.1.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy:docker": "scp ../docker-compose.pub.yml ../backend/.env qtrixnet@158.160.71.123:/home/qtrixnet/docker"
   },
   "eslintConfig": {
     "extends": [
@@ -35,5 +36,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "typescript": "^4.9.5"
   }
 }
