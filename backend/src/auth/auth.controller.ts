@@ -14,7 +14,7 @@ import { LocalGuard } from './guards/local-guard';
 import { RequestWithUser } from '../shared/types';
 import { SensitiveDataInterceptor } from '../shared/interceptors/sensitive-data-interceptor';
 
-@Controller('auth')
+@Controller('')
 export class AuthController {
   constructor(
     private readonly usersService: UsersService,

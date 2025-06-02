@@ -12,11 +12,13 @@ import { AuthModule } from './auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
 import { HashModule } from './hash/hash.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AppController } from './app.controller';
+import { AuthService } from './auth/auth.service';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.env',
+      envFilePath: '../.env',
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
@@ -41,5 +43,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     JwtModule,
     HashModule,
   ],
+  providers: [AuthService],
+  controllers: [AppController],
 })
 export class AppModule {}

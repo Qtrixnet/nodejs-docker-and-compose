@@ -1,20 +1,20 @@
 services:
   backend:
     container_name: backend
-    image: qtrixnet/backend-docker-and-compose-v4
+    image: qtrixnet/backend-docker-and-compose-v9
     ports:
       - '4000:3000'
-    env_file:
-      - ./backend/.env
+    env_file: .env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     restart: always
     networks:
       - internal
 
   frontend:
     container_name: frontend
-    image: qtrixnet/frontend-docker-and-compose-v4
+    image: qtrixnet/frontend-docker-and-compose-v9
     ports:
       - '8081:80'
     restart: always
@@ -23,13 +23,17 @@ services:
 
   db:
     image: postgres:alpine
-    env_file:
-      - ./backend/.env
+    env_file: .env
     restart: always
     volumes:
       - ./pg-data:/var/lib/postgresql/data/pgdata
     networks:
       - internal
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $POSTGRES_USER" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   adminer:
     image: adminer

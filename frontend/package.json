@@ -17,7 +17,7 @@
     "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy:docker": "scp ../docker-compose.pub.yml ../backend/.env qtrixnet@158.160.71.123:/home/qtrixnet/docker"
+    "deploy:docker": "scp ../docker-compose.pub.yml ../.env qtrixnet@158.160.71.123:/home/qtrixnet/docker"
   },
   "eslintConfig": {
     "extends": [
